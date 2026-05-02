@@ -83,6 +83,17 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 .detailSec{margin:20px 0}.detailSec h3{font-size:17px;margin:0 0 10px;font-weight:900}.detailSec p,.detailSec li{font-size:14px;line-height:1.75;color:#4e463d}
 .notice{background:#fff5e9;border:1px solid #f4d2af;border-radius:22px;padding:14px;font-size:13px;line-height:1.65;color:#654833}
 .empty{padding:40px 16px;text-align:center;color:#88796a}
+
+.allergyGuide{margin:16px;padding:17px;border-radius:26px;background:#fff0ee;border:1px solid #ffc9c2;box-shadow:0 8px 22px rgba(217,48,37,.06)}
+.allergyGuide strong{display:block;font-size:16px;color:#bf2d24;margin-bottom:8px}
+.allergyGuide p{font-size:13px;line-height:1.65;color:#5e4d45;margin:0}
+.allergyFoodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}
+.allergyFood{background:white;border:1px solid #ffd8d3;border-radius:15px;padding:9px 5px;text-align:center;font-size:12px;font-weight:800;color:#b3261e}
+.allergyWarnBox{background:#ffe5e5;color:#b3261e;font-weight:900;padding:10px;border-radius:14px;margin-top:10px;font-size:12px;border:1px solid #ffc9c2}
+#topBtn{position:fixed;right:16px;bottom:22px;width:50px;height:50px;border:0;border-radius:999px;background:#2d2925;color:white;font-size:20px;font-weight:900;display:none;z-index:999;box-shadow:0 10px 24px rgba(45,41,37,.24)}
+.top{transition:transform .25s ease}
+.quickSearchBtn{position:fixed;right:16px;bottom:82px;width:50px;height:50px;border:0;border-radius:999px;background:#e8792e;color:white;font-size:20px;font-weight:900;z-index:999;box-shadow:0 10px 24px rgba(232,121,46,.25)}
+
 </style>
 </head>
 
@@ -97,6 +108,24 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 <section class="heroCard">
   <strong>돌 전 안전 체크</strong>
   <p>처음 먹는 재료는 오전에 소량부터 시작하고 2~3일 반응을 살펴보세요. 꿀은 12개월 전 금지, 생우유는 음료로 12개월 이후를 권장해요.</p>
+</section>
+
+<section class="allergyGuide">
+  <strong>⚠️ 필수 알레르기 테스트 식품</strong>
+  <p>
+    계란, 우유, 밀가루, 땅콩, 콩, 생선, 새우 등은 처음 먹일 때 오전에 아주 소량부터 시작하고 2~3일 반응을 살펴보세요.
+  </p>
+  <div class="allergyFoodGrid">
+    <div class="allergyFood">계란</div>
+    <div class="allergyFood">우유</div>
+    <div class="allergyFood">밀가루</div>
+    <div class="allergyFood">땅콩</div>
+    <div class="allergyFood">콩·두부</div>
+    <div class="allergyFood">생선</div>
+    <div class="allergyFood">새우</div>
+    <div class="allergyFood">게·조개</div>
+    <div class="allergyFood">참깨</div>
+  </div>
 </section>
 
 <div class="filterBar" id="stageButtons"></div>
@@ -140,6 +169,10 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 </footer>
 </div>
 
+
+<button class="quickSearchBtn" onclick="focusSearch()" title="검색창으로 이동">🔎</button>
+<button id="topBtn" onclick="scrollToTop()" title="맨 위로">↑</button>
+
 <div class="ingredientSheet" id="ingredientSheet">
   <div class="ingredientInner">
     <div class="ingredientTop">
@@ -174,7 +207,7 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 
 <script>
 const stageInfo={all:{label:"전체",cls:""},early:{label:"초기",age:"약 5~6개월",cls:"early"},middle:{label:"중기",age:"약 7~8개월",cls:"middle"},late:{label:"후기",age:"약 9~11개월",cls:"late"},complete:{label:"완료기",age:"12개월 이후",cls:"complete"}};
-const allergens=["계란","달걀","우유","요거트","치즈","밀","국수","식빵","두부","콩","대구","연어","생선","새우","게","조개","참깨"];
+const allergens=["계란","달걀","난류","우유","요거트","치즈","유제품","밀","밀가루","국수","식빵","빵","대두","콩","두부","땅콩","견과","아몬드","호두","생선","대구","연어","새우","게","조개","갑각류","참깨"];
 function allergenList(ings){return allergens.filter(a=>ings.some(i=>i.includes(a)))}
 function recipe(stage,title,ingredients,summary){return{stage,title,ingredients,summary,age:stageInfo[stage].age,time:stage==="early"?"15~20분":stage==="middle"?"25~35분":stage==="late"?"30~40분":"25~40분",texture:stage==="early"?"묽은 미음":stage==="middle"?"부드러운 죽":stage==="late"?"진밥": "유아식",allergens:allergenList(ingredients)}}
 const early=[
@@ -211,12 +244,29 @@ function renderIngredientMenu(){const q=(document.getElementById("ingredientSear
 function toggleIngredientFromMenu(i){toggleIngredient(i);renderIngredientMenu()}
 document.getElementById("search").addEventListener("input",render);
 function filtered(){const q=document.getElementById("search").value.trim().toLowerCase();return recipes.filter(r=>{const text=[r.title,r.summary,...r.ingredients,stageInfo[r.stage].label].join(" ").toLowerCase();return(currentStage==="all"||r.stage===currentStage)&&(!q||q.split(/\s+/).every(w=>text.includes(w)))&&(selected.length===0||selected.every(s=>r.ingredients.some(i=>i.includes(s))||r.title.includes(s)))})}
-function render(){renderStages();renderSelected();const list=filtered();document.getElementById("countText").innerText=`${list.length}개`;let html="";list.slice(0,120).forEach((r,i)=>{if(i===0||i===6||i===18)html+=`<div class="ad">광고 영역 · AdSense 코드 삽입 위치</div>`;html+=`<article class="card"><button onclick="openRecipe(${recipes.indexOf(r)})"><span class="badge ${stageInfo[r.stage].cls}">${stageInfo[r.stage].label}</span><h3>${r.title}</h3><div class="meta">${r.age} · ${r.texture} · ${r.time}</div><div class="tags">${r.ingredients.slice(0,6).map(x=>`<span class="tag">${x}</span>`).join("")}</div>${r.allergens.length?`<div class="warn">알레르기 체크: ${r.allergens.slice(0,4).join(", ")}</div>`:""}</button></article>`});document.getElementById("recipeList").innerHTML=html||`<div class="empty">조건에 맞는 레시피가 없어요.</div>`}
-function openRecipe(idx){const r=recipes[idx];document.getElementById("modalBadge").className=`badge ${stageInfo[r.stage].cls}`;document.getElementById("modalBadge").innerText=stageInfo[r.stage].label;document.getElementById("modalTitle").innerText=r.title;document.getElementById("modalBody").innerHTML=`<div class="ad">상세페이지 상단 광고 영역</div><div class="infoGrid"><div class="info"><small>권장 시기</small><b>${r.age}</b></div><div class="info"><small>조리 시간</small><b>${r.time}</b></div><div class="info"><small>식감</small><b>${r.texture}</b></div><div class="info"><small>알레르기</small><b>${r.allergens.length?r.allergens.join(", "):"대표 재료 없음"}</b></div></div><section class="detailSec"><h3>${r.title} 만들기</h3><p>${r.summary}</p></section><section class="detailSec"><h3>재료</h3><ul>${r.ingredients.map(x=>`<li>${x}</li>`).join("")}</ul></section><div class="ad">만드는 방법 위 광고 영역</div><section class="detailSec"><h3>만드는 방법</h3><ol><li>재료를 깨끗하게 씻고 아이 단계에 맞게 작게 손질해요.</li><li>고기, 생선, 달걀 등 단백질 재료는 반드시 완전히 익혀요.</li><li>쌀, 진밥 또는 밥과 함께 물이나 육수를 넣고 부드럽게 끓여요.</li><li>먹이기 전 온도를 확인하고 처음 먹는 재료는 소량부터 시작해요.</li></ol></section><div class="notice"><b>주의사항</b><br>처음 먹는 재료는 오전에 소량부터 시작하고 2~3일간 발진, 구토, 설사 등 반응을 살펴보세요.</div><div class="ad">상세페이지 하단 광고 영역</div>`;document.getElementById("modal").classList.add("show")}
+function render(){renderStages();renderSelected();const list=filtered();document.getElementById("countText").innerText=`${list.length}개`;let html="";list.slice(0,120).forEach((r,i)=>{if(i===0||i===6||i===18)html+=`<div class="ad">광고 영역 · AdSense 코드 삽입 위치</div>`;html+=`<article class="card"><button onclick="openRecipe(${recipes.indexOf(r)})"><span class="badge ${stageInfo[r.stage].cls}">${stageInfo[r.stage].label}</span><h3>${r.title}</h3><div class="meta">${r.age} · ${r.texture} · ${r.time}</div><div class="tags">${r.ingredients.slice(0,6).map(x=>`<span class="tag">${x}</span>`).join("")}</div>${r.allergens.length?`<div class="allergyWarnBox">⚠️ 알레르기 주의: ${r.allergens.slice(0,6).join(", ")}</div>`:""}</button></article>`});document.getElementById("recipeList").innerHTML=html||`<div class="empty">조건에 맞는 레시피가 없어요.</div>`}
+function openRecipe(idx){const r=recipes[idx];document.getElementById("modalBadge").className=`badge ${stageInfo[r.stage].cls}`;document.getElementById("modalBadge").innerText=stageInfo[r.stage].label;document.getElementById("modalTitle").innerText=r.title;document.getElementById("modalBody").innerHTML=`<div class="ad">상세페이지 상단 광고 영역</div><div class="infoGrid"><div class="info"><small>권장 시기</small><b>${r.age}</b></div><div class="info"><small>조리 시간</small><b>${r.time}</b></div><div class="info"><small>식감</small><b>${r.texture}</b></div><div class="info"><small>알레르기</small><b>${r.allergens.length?r.allergens.join(", "):"대표 재료 없음"}</b></div></div><section class="detailSec"><h3>${r.title} 만들기</h3><p>${r.summary}</p></section><section class="detailSec"><h3>재료</h3><ul>${r.ingredients.map(x=>`<li>${x}</li>`).join("")}</ul></section><div class="ad">만드는 방법 위 광고 영역</div><section class="detailSec"><h3>만드는 방법</h3><ol><li>재료를 깨끗하게 씻고 아이 단계에 맞게 작게 손질해요.</li><li>고기, 생선, 달걀 등 단백질 재료는 반드시 완전히 익혀요.</li><li>쌀, 진밥 또는 밥과 함께 물이나 육수를 넣고 부드럽게 끓여요.</li><li>먹이기 전 온도를 확인하고 처음 먹는 재료는 소량부터 시작해요.</li></ol></section><div class="notice"><b>알레르기 주의사항</b><br>계란, 우유, 밀가루, 땅콩, 콩, 생선, 새우, 게, 조개, 참깨 등은 처음 먹일 때 오전에 소량부터 시작하고 2~3일간 발진, 구토, 설사, 호흡 이상 등 반응을 살펴보세요.</div><div class="ad">상세페이지 하단 광고 영역</div>`;document.getElementById("modal").classList.add("show")}
 function closeRecipe(){document.getElementById("modal").classList.remove("show")}
 function sendContact(){const name=document.getElementById("contactName").value.trim();const email=document.getElementById("contactEmail").value.trim();const msg=document.getElementById("contactMessage").value.trim();const subject=encodeURIComponent("[이유식 사이트 문의] "+(name||"문의자"));const body=encodeURIComponent(`이름: ${name}\n답변 받을 이메일: ${email}\n\n문의 내용:\n${msg}`);location.href=`mailto:kyhwang@astglobal.co.kr?subject=${subject}&body=${body}`}
 document.getElementById("ingredientSheet").addEventListener("click",e=>{if(e.target.id==="ingredientSheet")closeIngredientMenu()});
 document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeRecipe()});
+
+function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function focusSearch(){scrollToTop();setTimeout(()=>document.getElementById("search").focus(),350);}
+const topBtn=document.getElementById("topBtn");
+let lastScrollY=0;
+window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  topBtn.style.display=y>260?"block":"none";
+  const header=document.querySelector(".top");
+  if(y>lastScrollY && y>140){
+    header.style.transform="translateY(-100%)";
+  }else{
+    header.style.transform="translateY(0)";
+  }
+  lastScrollY=y;
+});
+
 render();
 </script>
 

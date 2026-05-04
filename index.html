@@ -103,6 +103,21 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 .ratioItem span{font-size:12px;color:#5f6f7f;line-height:1.45}
 .recipeTipBox{background:#f8f3ec;border:1px solid #eadfce;border-radius:20px;padding:13px;margin:12px 0;font-size:13px;line-height:1.65;color:#4e463d}
 
+.servingBox{
+  background:#f0f7f4;
+  border:1px solid #cde7db;
+  border-radius:18px;
+  padding:12px;
+  margin:10px 0;
+  font-size:13px;
+  color:#2f5d50;
+  font-weight:700;
+}
+.weightList li{
+  margin-bottom:4px;
+}
+
+
 
 </style>
 </head>
@@ -353,6 +368,38 @@ function getRecipeMethod(r){
   ];
 }
 
+
+function getIngredientWeight(r){
+  const base = {
+    "쌀": "쌀 30g",
+    "쌀가루": "쌀가루 30g",
+    "소고기": "소고기 20g",
+    "닭고기": "닭고기 20g",
+    "돼지고기": "돼지고기 20g",
+    "대구": "대구 20g",
+    "연어": "연어 20g",
+    "두부": "두부 30g",
+    "달걀": "달걀 1개 (노른자 기준)",
+    "계란노른자": "노른자 1개",
+    "감자": "감자 30g",
+    "고구마": "고구마 30g",
+    "단호박": "단호박 30g",
+    "애호박": "애호박 30g",
+    "브로콜리": "브로콜리 20g",
+    "당근": "당근 20g",
+    "양배추": "양배추 20g",
+    "배": "배 20g",
+    "사과": "사과 20g"
+  };
+
+  return r.ingredients.map(i=>{
+    for(let key in base){
+      if(i.includes(key)) return base[key];
+    }
+    return i + " 20~30g";
+  });
+}
+
 function getRecipeExtraTip(r){
   const has = (word) => r.title.includes(word) || r.ingredients.some(i => i.includes(word));
   if(has("계란") || has("달걀")){
@@ -377,34 +424,51 @@ function openRecipe(idx){
 const r=recipes[idx];
 const method=getRecipeMethod(r);
 const extraTip=getRecipeExtraTip(r);
+const weights=getIngredientWeight(r);
+
 document.getElementById("modalBadge").className=`badge ${stageInfo[r.stage].cls}`;
 document.getElementById("modalBadge").innerText=stageInfo[r.stage].label;
 document.getElementById("modalTitle").innerText=r.title;
+
 document.getElementById("modalBody").innerHTML=`
 <div class="ad">상세페이지 상단 광고 영역</div>
+
+<div class="servingBox">🍽️ 본 레시피는 3인분 기준입니다</div>
+
 <div class="infoGrid">
   <div class="info"><small>권장 시기</small><b>${r.age}</b></div>
   <div class="info"><small>조리 시간</small><b>${r.time}</b></div>
   <div class="info"><small>식감</small><b>${r.texture}</b></div>
   <div class="info"><small>알레르기</small><b>${r.allergens.length?r.allergens.join(", "):"대표 재료 없음"}</b></div>
 </div>
+
 <section class="detailSec">
   <h3>${r.title} 만들기</h3>
   <p>${r.summary}</p>
   <div class="recipeTipBox">${extraTip}</div>
 </section>
+
 <section class="detailSec">
-  <h3>재료</h3>
-  <ul>${r.ingredients.map(x=>`<li>${x}</li>`).join("")}</ul>
+  <h3>재료 (3인분 기준 중량)</h3>
+  <ul class="weightList">${weights.map(x=>`<li>${x}</li>`).join("")}</ul>
 </section>
-${r.stage==="early"?`<section class="detailSec"><h3>농도 기준</h3><p>초기 시작은 보통 10배죽처럼 묽게 시작하고, 아기가 잘 삼키면 7배죽, 5배죽처럼 조금씩 되직하게 조절해요.</p></section>`:""}
+
 <div class="ad">만드는 방법 위 광고 영역</div>
+
 <section class="detailSec">
   <h3>만드는 방법</h3>
   <ol>${method.map(x=>`<li>${x}</li>`).join("")}</ol>
 </section>
-<div class="notice"><b>알레르기 주의사항</b><br>계란은 처음 먹일 때 완숙 노른자부터 아주 소량 시작하는 것이 좋아요. 우유, 밀가루, 땅콩, 콩, 생선, 새우, 게, 조개, 참깨 등은 오전에 소량부터 시작하고 2~3일간 발진, 구토, 설사, 호흡 이상 등 반응을 살펴보세요.</div>
-<div class="ad">상세페이지 하단 광고 영역</div>`;
+
+<div class="notice"><b>알레르기 주의사항</b><br>
+계란은 처음 먹일 때 완숙 노른자부터 아주 소량 시작하는 것이 좋아요.
+우유, 밀가루, 땅콩, 콩, 생선, 새우, 게, 조개, 참깨 등은
+오전에 소량부터 시작하고 2~3일간 반응을 살펴보세요.
+</div>
+
+<div class="ad">상세페이지 하단 광고 영역</div>
+`;
+
 document.getElementById("modal").classList.add("show")
 }
 function closeRecipe(){document.getElementById("modal").classList.remove("show")}

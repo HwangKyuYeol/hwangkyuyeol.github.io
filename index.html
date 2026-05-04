@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이유식 레시피 검색 | 초기 중기 후기 완료기 아기 이유식</title>
+<title>이유식 레시피 검색 | 초기 중기 후기 완료기 토핑이유식 아기 이유식</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9007113589582129"
      crossorigin="anonymous"></script>
 <meta name="description" content="초기 이유식, 중기 이유식, 후기 이유식, 완료기 이유식 레시피를 재료로 쉽게 검색해보세요. 소고기 이유식, 감자 이유식, 애호박 이유식 등 아기 이유식 레시피를 모았습니다.">
 <meta name="keywords" content="이유식, 이유식 레시피, 초기 이유식, 중기 이유식, 후기 이유식, 완료기 이유식, 아기 이유식, 소고기 이유식">
 
 <!-- 네이버 서치어드바이저 소유확인 코드: 네이버에서 받은 코드로 content 값을 교체하세요 -->
-<meta name="naver-site-verification" content="0cb14dd13ab5e5caf646c37eaf5dd22055bf7c8b" />
-
-<meta property="og:title" content="재료로 찾는 이유식 레시피">
+<meta name="naver-site-verification" content="0cb14dd13ab5e5caf646c37eaf5dd22055bf7c8b" /><meta property="og:title" content="재료로 찾는 이유식 레시피">
 <meta property="og:description" content="가지고 있는 재료로 아기 이유식 레시피를 쉽게 찾아보세요.">
 <meta property="og:type" content="website">
+
 
 <style>
 *{box-sizing:border-box}
@@ -134,6 +133,13 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
   display:block;
 }
 
+
+.toppingGuide{margin:16px;padding:17px;border-radius:26px;background:#f5fff1;border:1px solid #d4efc7;box-shadow:0 8px 22px rgba(62,125,45,.06)}
+.toppingGuide strong{display:block;font-size:16px;color:#3d7d2d;margin-bottom:8px}
+.toppingGuide p{font-size:13px;line-height:1.65;color:#496141;margin:0}
+.topping{background:#edf9e8;color:#3d7d2d}
+.toppingDetail{background:#f6fff2;border:1px solid #d4efc7;border-radius:20px;padding:13px;margin:12px 0;font-size:13px;line-height:1.65;color:#3f5f37}
+
 </style>
 </head>
 
@@ -187,6 +193,12 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
   </div>
 </section>
 
+
+
+<section class="toppingGuide">
+  <strong>토핑이유식 가이드</strong>
+  <p>토핑이유식은 기본죽이나 진밥 위에 고기, 채소, 생선 토핑을 따로 올려 먹이는 방식이에요. 재료 맛을 구분해서 경험할 수 있고, 알레르기 확인과 식재료 조합 관리가 쉬워요.</p>
+</section>
 
 <div class="filterBar" id="stageButtons"></div>
 
@@ -266,7 +278,7 @@ h1{font-size:28px;line-height:1.18;margin:6px 0 14px;font-weight:950;letter-spac
 </div>
 
 <script>
-const stageInfo={all:{label:"전체",cls:""},early:{label:"초기",age:"약 5~6개월",cls:"early"},middle:{label:"중기",age:"약 7~8개월",cls:"middle"},late:{label:"후기",age:"약 9~11개월",cls:"late"},complete:{label:"완료기",age:"12개월 이후",cls:"complete"}};
+const stageInfo={topping:{label:"토핑",age:"중기 이후",cls:"topping"},all:{label:"전체",cls:""},early:{label:"초기",age:"약 5~6개월",cls:"early"},middle:{label:"중기",age:"약 7~8개월",cls:"middle"},late:{label:"후기",age:"약 9~11개월",cls:"late"},complete:{label:"완료기",age:"12개월 이후",cls:"complete"}};
 const allergens=["계란","달걀","난류","우유","요거트","치즈","유제품","밀","밀가루","국수","식빵","빵","대두","콩","두부","땅콩","견과","아몬드","호두","생선","대구","연어","새우","게","조개","갑각류","참깨"];
 function allergenList(ings){return allergens.filter(a=>ings.some(i=>i.includes(a)))}
 function recipe(stage,title,ingredients,summary){return{stage,title,ingredients,summary,age:stageInfo[stage].age,time:stage==="early"?"15~20분":stage==="middle"?"25~35분":stage==="late"?"30~40분":"25~40분",texture:stage==="early"?"묽은 미음":stage==="middle"?"부드러운 죽":stage==="late"?"진밥": "유아식",allergens:allergenList(ingredients)}}
@@ -289,11 +301,68 @@ const late=[];for(let i=0;i<100;i++){let arr=Array.from(new Set([lateBase[i%late
 const completeBase=["소고기","닭고기","돼지고기","달걀","두부","대구","연어","새우","치즈","요거트","감자","고구마","단호박","애호박","브로콜리","당근","양배추","배추","무","시금치","청경채","버섯","양파","파프리카","토마토","가지","오이","김","참깨","사과","배","바나나","아보카도","국수","식빵"];
 const types=["덮밥","볶음밥","주먹밥","국","찜","전","수프","리조또"];
 const complete=[];for(let i=0;i<100;i++){let arr=Array.from(new Set([completeBase[i%completeBase.length],completeBase[(i*4+5)%completeBase.length],completeBase[(i*6+9)%completeBase.length]])).slice(0,3);complete.push(recipe("complete",`${arr.join(" ")} ${types[i%types.length]}`,["밥",...arr,"물 또는 육수"],"가족식으로 넘어가기 전 약한 간과 부드러운 식감으로 먹기 좋아요."))}
-const recipes=[...early,...middle,...late,...complete];
-const ingredients=Array.from(new Set(recipes.flatMap(r=>r.ingredients).filter(x=>!["물","육수 또는 물","채수 또는 육수","물 또는 육수","쌀","밥","진밥"].includes(x)))).slice(0,50);
+
+const toppingNames=[
+"소고기","닭고기","돼지고기안심","대구","연어","두부","계란노른자","감자","고구마","단호박",
+"애호박","브로콜리","당근","양배추","배추","무","시금치","청경채","표고버섯","새송이버섯",
+"양파","파프리카","토마토","가지","완두콩","사과","배","바나나","아보카도","김가루"
+];
+function toppingExplain(n){
+ const map={
+  "소고기":"핏물을 가볍게 제거하고 완전히 익힌 뒤 잘게 다져요. 철분 보충 토핑으로 좋아요.",
+  "닭고기":"껍질과 기름기를 제거하고 푹 삶은 뒤 결대로 찢어 잘게 다져요.",
+  "돼지고기안심":"기름기가 적은 안심을 완전히 익혀 잘게 다져요. 처음엔 소량부터 시작해요.",
+  "대구":"가시를 꼼꼼히 제거하고 충분히 익힌 뒤 잘게 부숴요.",
+  "연어":"완전히 익힌 뒤 잔가시를 확인하고 잘게 으깨요. 처음엔 적은 양만 올려요.",
+  "두부":"끓는 물에 데친 뒤 으깨서 사용해요. 부드러운 단백질 토핑이에요.",
+  "계란노른자":"계란은 완숙으로 삶고 처음에는 흰자보다 노른자부터 아주 소량만 으깨서 올려요.",
+  "감자":"푹 익혀 으깨요. 되직하면 물이나 육수로 농도를 조절해요.",
+  "고구마":"찌거나 삶아 곱게 으깨요. 단맛이 강하니 소량부터 시작해요.",
+  "단호박":"껍질과 씨를 제거하고 쪄서 으깨요. 색감과 단맛이 좋아요.",
+  "애호박":"부드러운 부분을 익혀 잘게 다져요. 순한 채소 토핑이에요.",
+  "브로콜리":"송이 부분을 충분히 익힌 뒤 잘게 다져요. 향이 있어 소량부터 시작해요.",
+  "당근":"푹 익혀 잘게 다지거나 으깨요. 고기 토핑과 잘 어울려요.",
+  "양배추":"부드럽게 익힌 뒤 잘게 다져요. 순한 채소 토핑이에요.",
+  "배추":"잎 부분을 충분히 익혀 잘게 다져요. 수분감이 좋아요.",
+  "무":"푹 익혀 잘게 다지면 단맛이 올라와 생선 토핑과 잘 어울려요.",
+  "시금치":"데친 뒤 물기를 짜고 잘게 다져요. 처음에는 아주 소량만 사용해요.",
+  "청경채":"잎 부분을 익혀 잘게 다져요. 부드러운 초록 채소 토핑이에요.",
+  "표고버섯":"질길 수 있어 아주 잘게 다지고 충분히 익혀요. 향이 강해 소량부터 시작해요.",
+  "새송이버섯":"부드럽게 익힌 뒤 잘게 다져요. 씹기 연습 시기에 좋아요.",
+  "양파":"충분히 익히면 단맛이 나요. 고기 토핑과 섞기 좋아요.",
+  "파프리카":"껍질이 질기면 제거하고 익혀 잘게 다져요.",
+  "토마토":"껍질과 씨를 제거하고 익혀 사용해요. 산미가 있어 소량부터 시작해요.",
+  "가지":"푹 익혀 부드럽게 으깨요. 수분이 많아 진밥 위 토핑으로 좋아요.",
+  "완두콩":"푹 익혀 껍질감이 남지 않게 으깨요.",
+  "사과":"익혀서 잘게 다지거나 으깨요. 채소 거부감을 줄이는 데 도움돼요.",
+  "배":"살짝 익혀 잘게 다지거나 갈아 사용해요.",
+  "바나나":"잘 익은 것을 으깨서 사용해요. 단맛이 강하니 소량만 올려요.",
+  "아보카도":"잘 익은 것을 으깨서 사용해요. 지방감이 있어 처음엔 소량만 먹여요.",
+  "김가루":"무염 제품을 잘게 부숴 아주 소량만 올려요. 간이 된 김은 피하세요."
+ };
+ return map[n]||"충분히 익혀 잘게 다지거나 으깨서 준비해요.";
+}
+const topping=[];
+for(let i=0;i<100;i++){
+ const arr=Array.from(new Set([toppingNames[i%toppingNames.length],toppingNames[(i*3+5)%toppingNames.length],toppingNames[(i*7+11)%toppingNames.length]])).slice(0,3);
+ topping.push({
+   stage:"topping",
+   title:`${arr.join(" ")} 토핑이유식`,
+   ingredients:["기본죽 또는 진밥",...arr],
+   summary:`기본죽이나 진밥 위에 ${arr.join(", ")} 토핑을 따로 올려 재료 맛을 경험할 수 있는 토핑이유식이에요.`,
+   age:"중기 이후",
+   time:"25~40분",
+   texture:"재료별 토핑",
+   allergens:allergenList(arr),
+   toppingDesc:arr.map(toppingExplain)
+ });
+}
+
+const recipes=[...early,...middle,...late,...complete,...topping];
+const ingredients=Array.from(new Set(recipes.flatMap(r=>r.ingredients).filter(x=>!["물","육수 또는 물","채수 또는 육수","물 또는 육수","쌀","밥","진밥","기본죽 또는 진밥"].includes(x)))).slice(0,50);
 const ingredientCategories={"고기·생선·단백질":["소고기","닭고기","돼지고기","돼지고기안심","대구","연어","두부","달걀","계란노른자","새우"],"채소":["감자","고구마","단호박","애호박","브로콜리","당근","양배추","배추","무","시금치","청경채","표고버섯","새송이버섯","버섯","양파","파프리카","토마토","가지","오이","완두콩"],"과일·기타":["사과","배","바나나","아보카도","김가루","김","참깨","치즈","요거트","국수","식빵","오트밀"]};
 let currentStage="all",selected=[];
-function renderStages(){document.getElementById("stageButtons").innerHTML=["all","early","middle","late","complete"].map(s=>`<button class="${currentStage===s?'active':''}" onclick="setStage('${s}')">${stageInfo[s].label}</button>`).join("")}
+function renderStages(){document.getElementById("stageButtons").innerHTML=["all","early","middle","late","complete","topping"].map(s=>`<button class="${currentStage===s?'active':''}" onclick="setStage('${s}')">${stageInfo[s].label}</button>`).join("")}
 function setStage(s){currentStage=s;render()}
 function toggleIngredient(i){selected=selected.includes(i)?selected.filter(x=>x!==i):[...selected,i];render()}
 function renderSelected(){document.getElementById("ingredientBtnText").innerText=selected.length?`${selected.length}개 선택 ›`:"선택 없음 ›";document.getElementById("selectedBox").innerHTML=selected.length?selected.map(i=>`<button class="selectedPill" onclick="toggleIngredient('${i}')">${i} ×</button>`).join(""):`<span class="selectedPill">재료를 선택하면 가능한 레시피만 보여줘요</span>`}
@@ -324,6 +393,17 @@ function getRecipeMethod(r){
   const has = (word) => title.includes(word) || ing.some(i => i.includes(word));
   const main = ing.filter(x=>!["쌀","쌀가루","물","육수 또는 물","채수 또는 육수","물 또는 육수","진밥","밥"].includes(x));
   const mainText = main.length ? main.join(", ") : "재료";
+
+  if(r.stage==="topping"){
+    return [
+      "기본죽이나 진밥을 먼저 준비하고 아기 단계에 맞게 농도와 입자를 조절해요.",
+      "토핑 재료는 각각 따로 익혀요. 고기, 생선, 계란은 반드시 완전히 익혀요.",
+      ...(r.toppingDesc||[]),
+      "각 토핑은 한 번 먹을 양만큼 10~20g 정도로 소분해 올려요.",
+      "처음 먹는 토핑은 다른 새 재료와 동시에 시작하지 말고 단독으로 소량 테스트해요.",
+      "남은 토핑은 식힌 뒤 소분 보관하고, 먹이기 전 충분히 데워 온도를 확인해요."
+    ];
+  }
 
   if(r.stage==="early"){
     let ratio = title.includes("쌀미음") ? "쌀가루 10g에 물 100ml 정도를 넣어 10배죽처럼 묽게 시작해요." :
@@ -416,6 +496,7 @@ function getIngredientWeight(r){
   };
 
   return r.ingredients.map(i=>{
+    if(i==="기본죽 또는 진밥") return "기본죽 또는 진밥 240~300g";
     for(let key in base){
       if(i.includes(key)) return base[key];
     }
@@ -467,7 +548,7 @@ document.getElementById("modalBody").innerHTML=`
 
 <section class="detailSec">
   <h3>${r.title} 만들기</h3>
-  <p>${r.summary}</p>
+  <p>${r.summary}</p>${r.stage==="topping"?`<div class="toppingDetail"><b>토핑 준비법</b><br>${r.toppingDesc.map(x=>"• "+x).join("<br>")}<br><br><b>먹이는 법</b><br>기본죽 또는 진밥 1회분에 토핑을 10~20g씩 올려 먹여요. 처음 먹는 재료는 단독으로 소량 테스트하고, 남은 토핑은 식힌 뒤 소분 보관해요.</div>`:""}
   <div class="recipeTipBox">${extraTip}</div>
 </section>
 
@@ -525,7 +606,7 @@ function toggleSection(id){
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"재료로 찾는 이유식 레시피","description":"초기, 중기, 후기, 완료기 이유식 레시피를 재료로 검색할 수 있는 모바일 이유식 도감입니다.","potentialAction":{"@type":"SearchAction","target":"?q={search_term_string}","query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"재료로 찾는 이유식 레시피","description":"초기, 중기, 후기, 완료기 이유식, 토핑이유식 레시피를 재료로 검색할 수 있는 모바일 이유식 도감입니다.","potentialAction":{"@type":"SearchAction","target":"?q={search_term_string}","query-input":"required name=search_term_string"}}
 
 function toggleSection(id){
   const el = document.getElementById(id);

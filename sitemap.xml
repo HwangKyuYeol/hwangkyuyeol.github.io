@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://hwangkyuyeol.github.io/Baby-Food-Recipe/</loc>
-<priority>1.0</priority>
-</url>
+  <url><loc>https://hwangkyuyeol.github.io/</loc><lastmod>2026-06-01</lastmod><priority>1.0</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/guide.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/recipes.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/allergy.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/storage.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/about.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/privacy.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/terms.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/contact.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-early-baby-food-start.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-ten-times-rice-porridge.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-seven-five-times-porridge.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-beef-baby-food.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-egg-yolk-baby-food.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-middle-stage-baby-food.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-late-stage-chewing-practice.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-complete-stage-toddler-food.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-topping-baby-food-guide.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-topping-pros-cons.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-topping-storage.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-baby-food-freezing.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-baby-food-thawing.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-baby-food-refusal.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-allergy-test-guide.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-milk-wheat-peanut-allergy.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-fish-shrimp-allergy.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-constipation-baby-food.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-baby-food-outing.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hwangkyuyeol.github.io/article-baby-food-ingredients.html</loc><lastmod>2026-06-01</lastmod><priority>0.8</priority></url>
 </urlset>

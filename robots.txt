@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hwangkyuyeol.github.io/Baby-Food-Recipe/sitemap.xml
+Sitemap: https://hwangkyuyeol.github.io/sitemap.xml
